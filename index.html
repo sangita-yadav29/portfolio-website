@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangita Yadav | Frontend Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: rgb(0,0,33); color: white; font-family: "Poppins", sans-serif; }
+
+        /* NAVBAR */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 100px; height: 60px;
+            background-color: rgb(5,5,97);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-logo { font-size: 1.3rem; font-weight: 600; }
+        nav ul { display: flex; list-style: none; gap: 8px; }
+        nav ul li a {
+            text-decoration: none; color: rgb(211,201,201);
+            font-size: 0.9rem; padding: 6px 14px;
+            border-radius: 20px; transition: all 0.3s;
+        }
+        nav ul li a:hover { color: white; background: rgba(163,106,217,0.2); }
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; background: none; border: none;
+        }
+        .hamburger span { display: block; width: 25px; height: 2px; background: white; border-radius: 2px; }
+
+        /* COMMON */
+        .section-label { color: rgb(211,201,201); font-size: 0.9rem; letter-spacing: 1px; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin: 5px 0 40px; }
+        .purple { color: rgb(163,106,217); }
+        hr.divider {
+            border: 0;
+            background: linear-gradient(to right, transparent, blueviolet, transparent);
+            height: 1.2px; margin: 0 100px;
+        }
+
+        /* HOME */
+        #home {
+            display: flex; align-items: center;
+            justify-content: space-between;
+            min-height: 90vh; padding: 80px 100px; gap: 60px;
+        }
+        .hero-text { flex: 1; font-size: 2.2rem; line-height: 1.5; }
+        .hero-typed { color: rgb(163,106,217); display: block; min-height: 1.5em; font-size: 2.2rem; }
+        .hero-sub {
+            font-size: 0.95rem; color: rgb(211,201,201);
+            line-height: 1.8; margin: 15px 0 25px;
+            font-weight: 400; max-width: 450px;
+        }
+        .hero-img { flex: 1; display: flex; justify-content: flex-end; }
+        .hero-img img {
+            width: 85%; max-width: 400px;
+            
+            filter: drop-shadow(0 0 30px rgba(163,106,217,0.25));
+        }
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn {
+            padding: 11px 28px; border-radius: 25px;
+            font-family: "Poppins", sans-serif; font-size: 0.9rem;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.3s; display: inline-block; font-weight: 500;
+        }
+        .btn-primary { background: rgb(163,106,217); color: white; border: 2px solid rgb(163,106,217); }
+        .btn-primary:hover { background: transparent; color: rgb(163,106,217); }
+        .btn-outline { background: transparent; color: rgb(163,106,217); border: 2px solid rgb(163,106,217); }
+        .btn-outline:hover { background: rgb(163,106,217); color: white; }
+
+        /* ABOUT */
+        #about { background: rgb(0,0,42); padding: 80px 100px; }
+        .about-container { display: flex; gap: 60px; align-items: center; }
+        .about-content { flex: 2; }
+        .about-content p { color: rgb(211,201,201); line-height: 1.9; font-size: 0.95rem; margin-bottom: 15px; }
+        .about-img-wrap { flex: 1; display: flex; justify-content: flex-end; }
+        .about-img-wrap img {
+            width: 280px;
+            filter: drop-shadow(0 0 25px rgba(163,106,217,0.4));
+        }
+        .about-stats { display: flex; gap: 35px; margin-top: 25px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat h3 { font-size: 1.8rem; color: rgb(163,106,217); font-weight: 700; }
+        .stat p { font-size: 0.8rem; color: rgb(211,201,201); }
+
+        /* EXPERIENCE */
+        #experience { padding: 80px 100px; }
+        .exp-container { display: flex; gap: 25px; align-items: stretch; }
+        .exp-card {
+            background: #0d0d36; border: 1px solid #2b2b66;
+            border-left: 5px solid rgb(163,106,217);
+            padding: 25px; border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); flex: 2;
+        }
+        .exp-company-name {
+            font-size: 1.2rem; color: rgb(163,106,217); font-weight: 600;
+            margin-bottom: 5px; display: flex;
+            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px;
+        }
+        .exp-date { font-size: 0.85rem; color: gray; font-weight: normal; }
+        .exp-role { font-size: 1rem; color: #a4a4d6; margin-bottom: 15px; }
+        .exp-list { padding-left: 20px; }
+        .exp-list li { margin-bottom: 12px; font-size: 0.92rem; color: #d3c9c9; line-height: 1.6; list-style-type: disc; }
+        .skills-card {
+            background: #0d0d36; border: 1px solid #2b2b66;
+            border-left: 5px solid rgb(163,106,217);
+            padding: 25px 30px; border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); flex: 1;
+        }
+        .skills-card h3 { color: rgb(163,106,217); font-size: 1.1rem; margin-bottom: 15px; }
+        .skills-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag {
+            display: inline-block; background: #1a1a4e; color: #d3c9c9;
+            padding: 6px 14px; border-radius: 20px; font-size: 0.82rem;
+            border: 1px solid #2b2b66; transition: all 0.3s;
+        }
+        .skill-tag:hover { background: rgb(163,106,217); color: white; }
+
+        /* PROJECTS */
+        #projects { background: rgb(0,0,42); padding: 80px 100px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 25px; }
+        .project-card {
+            background: #0d0d36; border: 1px solid #2b2b66;
+            border-left: 5px solid rgb(163,106,217);
+            padding: 25px; border-radius: 12px; transition: all 0.3s;
+        }
+        .project-card:hover { transform: translateY(-5px); border-color: rgb(163,106,217); box-shadow: 0 15px 30px rgba(163,106,217,0.1); }
+        .project-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .project-card h3 { color: rgb(163,106,217); margin-bottom: 10px; font-size: 1.1rem; }
+        .project-card p { color: rgb(211,201,201); font-size: 0.88rem; line-height: 1.6; margin-bottom: 15px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .tag {
+            background: #1a1a4e; color: #d3c9c9;
+            padding: 4px 12px; border-radius: 20px;
+            font-size: 0.78rem; border: 1px solid #2b2b66;
+        }
+        .project-links a { color: rgb(163,106,217); font-size: 0.85rem; text-decoration: none; transition: color 0.3s; }
+        .project-links a:hover { color: white; }
+
+        /* CERTIFICATES */
+        #certificates { padding: 80px 100px; }
+        .cert-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; max-width: 700px; margin: 0 auto; }
+        .cert-card {
+            background: #0d0d36; border: 1px solid #2b2b66;
+            border-top: 4px solid rgb(163,106,217);
+            padding: 25px 20px; border-radius: 12px;
+            text-align: center; transition: all 0.3s;
+            text-decoration: none; display: block; cursor: pointer;
+        }
+        .cert-card:hover { transform: translateY(-5px); border-color: rgb(163,106,217); }
+        .cert-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .cert-card h4 { color: rgb(163,106,217); font-size: 1rem; margin-bottom: 6px; }
+        .cert-card p { color: rgb(211,201,201); font-size: 0.85rem; }
+        .cert-card span { font-size: 0.78rem; color: gray; display: block; margin-top: 8px; }
+
+        /* CONTACT */
+        #contact { background: rgb(0,0,42); padding: 80px 100px; }
+        .contact-container { display: flex; gap: 60px; align-items: flex-start; }
+        .contact-info { flex: 1; }
+        .contact-info > p { color: rgb(211,201,201); line-height: 1.8; margin-bottom: 25px; font-size: 0.95rem; }
+        .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 0.9rem; }
+        .contact-detail i { color: rgb(163,106,217); width: 20px; }
+        .contact-detail a { color: rgb(211,201,201); text-decoration: none; transition: color 0.3s; }
+        .contact-detail a:hover { color: rgb(163,106,217); }
+        .contact-detail span { color: rgb(211,201,201); }
+        .social-links { display: flex; gap: 12px; margin-top: 25px; }
+        .social-link {
+            width: 42px; height: 42px; background: #1a1a4e;
+            border: 1px solid #2b2b66; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: rgb(211,201,201); font-size: 1rem; transition: all 0.3s;
+        }
+        .social-link:hover { background: rgb(163,106,217); color: white; transform: translateY(-3px); }
+        .resume-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 22px; padding: 11px 24px;
+            background: transparent; color: rgb(163,106,217);
+            border: 2px solid rgb(163,106,217); border-radius: 25px;
+            font-family: "Poppins", sans-serif; font-size: 0.9rem;
+            font-weight: 500; text-decoration: none; transition: all 0.3s;
+        }
+        .resume-btn:hover { background: rgb(163,106,217); color: white; }
+        .contact-form { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input,
+        .contact-form textarea {
+            background: #0d0d36; border: 1px solid #2b2b66;
+            color: white; padding: 12px 15px; border-radius: 8px;
+            font-family: "Poppins", sans-serif; font-size: 0.9rem;
+            outline: none; transition: border-color 0.2s;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder { color: #a4a4d6; }
+        .contact-form input:focus,
+        .contact-form textarea:focus { border-color: rgb(163,106,217); }
+        .contact-form textarea { height: 130px; resize: none; }
+        .contact-form button {
+            background: rgb(163,106,217); color: white; border: none;
+            padding: 12px; border-radius: 8px;
+            font-family: "Poppins", sans-serif; font-size: 0.95rem;
+            cursor: pointer; transition: background 0.3s;
+        }
+        .contact-form button:hover { background: rgb(130,70,190); }
+
+        /* FOOTER */
+        footer {
+            text-align: center; padding: 20px;
+            background: rgb(5,5,97); color: rgb(211,201,201); font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            nav { padding: 0 40px; }
+            #home, #about, #experience, #projects, #certificates, #contact { padding: 60px 50px; }
+            hr.divider { margin: 0 50px; }
+            .hero-text { font-size: 1.8rem; }
+            .hero-typed { font-size: 1.8rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .cert-grid { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .hamburger { display: flex; }
+            nav ul {
+                display: none; position: absolute; top: 60px; left: 0; right: 0;
+                background: rgb(5,5,97); flex-direction: column;
+                align-items: center; padding: 20px 0; gap: 15px; z-index: 999;
+            }
+            nav ul.open { display: flex; }
+            #home { flex-direction: column-reverse; text-align: center; min-height: auto; padding: 50px 25px; gap: 30px; }
+            .hero-text { font-size: 1.5rem; }
+            .hero-typed { font-size: 1.5rem; }
+            .hero-sub { margin: 15px auto 25px; }
+            .hero-img { justify-content: center; }
+            .hero-img img { width: 70%; max-width: 260px; }
+            .hero-btns { justify-content: center; }
+            #about { padding: 50px 25px; }
+            .about-container { flex-direction: column; text-align: center; }
+            .about-img-wrap { justify-content: center; }
+            .about-img-wrap img { width: 220px; }
+            .about-stats { justify-content: center; }
+            #experience { padding: 50px 25px; }
+            .exp-container { flex-direction: column; }
+            #projects { padding: 50px 25px; }
+            #certificates { padding: 50px 25px; }
+            .cert-grid { grid-template-columns: repeat(2,1fr); }
+            #contact { padding: 50px 25px; }
+            .contact-container { flex-direction: column; }
+            hr.divider { margin: 0 25px; }
+            .section-title { font-size: 1.4rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-text { font-size: 1.3rem; }
+            .hero-typed { font-size: 1.3rem; }
+            .cert-grid { grid-template-columns: 1fr; }
+            .about-stats { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-logo">Sangita Yadav</div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    <ul id="navMenu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact Me</a></li>
+    </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+    <div class="hero-text">
+        Hi, My name is <span class="purple">Sangita</span>
+        <div>and I am a passionate</div>
+        <span id="element" class="hero-typed"></span>
+        <p class="hero-sub">A Frontend Developer from Varanasi, India — building clean, responsive web experiences with HTML, CSS, JavaScript & Bootstrap.</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Hire Me</a>
+            <a href="#projects" class="btn btn-outline">See My Work</a>
+        </div>
+    </div>
+    <div class="hero-img">
+        <img src="bg_nobg.png" alt="Sangita Yadav">
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-label">Get to know me</div>
+    <div class="section-title">About Me</div>
+    <div class="about-container">
+        <div class="about-content">
+            <p>Hi! I'm <span class="purple">Sangita Yadav</span>, a passionate Frontend Developer from Varanasi, India. I completed my <strong>B.E. in Electronics & Communication Engineering</strong> from <strong>IET, Dr. Bhim Rao Ambedkar University</strong> (2021–2025) with a CGPA of <strong>7.0</strong>.</p>
+            <p>My passion lies in creating beautiful and functional web experiences. I worked as an <strong>Application Developer Intern at Cyfuture India Pvt. Ltd.</strong> where I built real-world web applications using Python, Flask, and frontend technologies.</p>
+            <p>I'm always eager to learn new things. Currently deepening my <strong>JavaScript</strong> skills and beginning my <strong>React</strong> journey to grow as a modern frontend developer.</p>
+            <div class="about-stats">
+                <div class="stat"><h3>1+</h3><p>Internship</p></div>
+                <div class="stat"><h3>4+</h3><p>Projects</p></div>
+                <div class="stat"><h3>7.0</h3><p>CGPA</p></div>
+            </div>
+        </div>
+        <div class="about-img-wrap">
+            <img src="developer1_nobg.png" alt="Sangita Developer">
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="section-label">What I have done so far</div>
+    <div class="section-title">Work Experience</div>
+    <div class="exp-container">
+        <div class="exp-card">
+            <div class="exp-company-name">
+                Cyfuture India Pvt. Ltd.
+                <span class="exp-date">JUL – AUG 2024</span>
+            </div>
+            <div class="exp-role">Application Developer Intern (Backend Focus)</div>
+            <ul class="exp-list">
+                <li>Designed and developed a fully responsive web application featuring secure <strong>Login, Sign-Up, and User Dashboard</strong> interfaces.</li>
+                <li>Utilized <strong>HTML5, CSS3, and Bootstrap</strong> to build a clean, modern, and user-friendly frontend layout.</li>
+                <li>Implemented seamless frontend-backend integration by connecting UI components with <strong>Python and Flask</strong> backend routes.</li>
+                <li>Worked on secure user data handling, session management, and dynamic dashboard rendering based on user login status.</li>
+            </ul>
+        </div>
+        <div class="skills-card">
+            <h3>Technologies Used</h3>
+            <div class="skills-tags">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Flask</span>
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">Jinja2</span>
+                <span class="skill-tag">Werkzeug</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-label">Things I have built</div>
+    <div class="section-title">Projects</div>
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <div class="project-icon">🛒</div>
+            <h3>ShopZen</h3>
+            <p>Responsive e-commerce app with product listing, real-time search, and category filter across 5 categories using ES6+ array methods — achieved 95+ Lighthouse mobile performance score. Persistent cart with localStorage, live badge count, and IntersectionObserver scroll animations.</p>
+            <div class="project-tags">
+                <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript ES6+</span><span class="tag">Bootstrap 5</span><span class="tag">localStorage</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/sangita-yadav29" target="_blank">📂 GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">🔐</div>
+            <h3>Auth App</h3>
+            <p>Full-stack authentication system with 5 Flask routes (Home, Register, Login, Dashboard, Logout) — GET/POST handling, protected routes, and session-based user tracking. Secure password hashing via Werkzeug; flash messages for success/error feedback.</p>
+            <div class="project-tags">
+                <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Jinja2</span><span class="tag">Werkzeug</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/sangita-yadav29" target="_blank">📂 GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">💼</div>
+            <h3>Portfolio Website</h3>
+            <p>Responsive portfolio with animated typing effect (Typed.js), skills showcase, and project section — dark-theme UI built using CSS Flexbox and Grid with semantic HTML5 structure.</p>
+            <div class="project-tags">
+                <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Typed.js</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/sangita-yadav29" target="_blank">📂 GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">🎮</div>
+            <h3>Number Guessing Game</h3>
+            <p>Interactive browser game using Math.random(), attempt tracking, and win/lose DOM feedback — demonstrates JS logic, event handling, and DOM manipulation.</p>
+            <div class="project-tags">
+                <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/sangita-yadav29" target="_blank">📂 GitHub</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+    <div class="section-label">My achievements</div>
+    <div class="section-title">Certificates</div>
+    <div class="cert-grid">
+
+        <a href="HTML_Certificate.pdf" target="_blank" class="cert-card">
+            <div class="cert-icon">🌐</div>
+            <h4>Build Your Own Static Website</h4>
+            <p>NxtWave CCBP 4.0 Academy</p>
+            <span>November 2023</span>
+        </a>
+
+        <a href="Internship_Certificate.pdf" target="_blank" class="cert-card">
+            <div class="cert-icon">🏢</div>
+            <h4>Application Developer Internship</h4>
+            <p>Cyfuture India Pvt. Ltd.</p>
+            <span>Aug 2024</span>
+        </a>
+
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-label">Get in touch</div>
+    <div class="section-title">Contact Me</div>
+    <div class="contact-container">
+        <div class="contact-info">
+            <p>I'm currently looking for frontend developer opportunities. Whether you have a question, a project idea, or just want to say hi — feel free to reach out!</p>
+            <div class="contact-detail">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+918090037735">+91 8090037735</a>
+            </div>
+            <div class="contact-detail">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:sangitayadav7735@gmail.com">sangitayadav7735@gmail.com</a>
+            </div>
+            <div class="contact-detail">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/sangita-yadav-9869a1250" target="_blank">linkedin.com/in/sangita-yadav-9869a1250</a>
+            </div>
+            <div class="contact-detail">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/sangita-yadav29" target="_blank">github.com/sangita-yadav29</a>
+            </div>
+            <div class="contact-detail">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Varanasi, India</span>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/sangita-yadav29" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sangita-yadav-9869a1250" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:sangitayadav7735@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <a href="Sangita_Yadav_Resume.pdf" download class="resume-btn">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
+        <div class="contact-form">
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Your Message"></textarea>
+            <button>Send Message ✉️</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 <span style="color:rgb(163,106,217);font-weight:600;">Sangita Yadav</span> &nbsp;|&nbsp; Frontend Developer &nbsp;|&nbsp; Made with ❤️</p>
+</footer>
+
+<script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+<script>
+    new Typed('#element', {
+        strings: ['Frontend Developer', 'Web Designer', 'Problem Solver', 'Open to Opportunities'],
+        typeSpeed: 55, backSpeed: 30, loop: true
+    });
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navMenu').classList.toggle('open');
+    });
+    document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navMenu').classList.remove('open');
+        });
+    });
+</script>
+</body>
+</html>
